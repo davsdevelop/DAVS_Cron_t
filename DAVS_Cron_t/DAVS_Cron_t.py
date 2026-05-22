@@ -1,6 +1,6 @@
 import reflex as rx
-# from .components import task_input
-# from .components import task_list
+from .components import task_input
+from .components import task_list
 
 def index() -> rx.Component:
     # Contenedor raíz 
@@ -8,7 +8,7 @@ def index() -> rx.Component:
         # ===== HEADER =====
         rx.box(
             width="100%",
-            height="25px",
+            height="15px",
             background_color="#FFC52E"
         ),
         rx.box( # espacio
@@ -32,11 +32,11 @@ def index() -> rx.Component:
                     padding_bottom="2"
                 ),
 
-                # Input Principal
-                # task_input(),
+                #Input Principal
+                task_input(),
 
-                # Lista de tareas
-                # task_list(),
+                #Lista de tareas
+                task_list(),
 
                 spacing="5",
                 width="100%",
@@ -49,21 +49,38 @@ def index() -> rx.Component:
             padding_y="10",
             flex_grow="1",
         ),
+
+        rx.box( # espacio
+            width="100%",
+            height="25px",
+        ),
         
         # ==== FOOTER ====
         rx.box(
+                        
             rx.text(
-                "© 2026 Cronos. Todos los derechos reservados.", 
+                "Desarrollado por: Diego Videla Silva", 
                 size="2", 
-                color="black", 
-                align="center"
+                color="#464649", 
+                # align="center"
+                padding_left="40px"
             ),
+            rx.image("/DAVS.png", width="70px"),
+            rx.text(
+                "© 2026 Cron-t. Todos los derechos reservados.", 
+                size="2", 
+                color="#464649", 
+                # align="right"
+                padding_right="40px"
+            ),
+
             width="100%",
             padding_y="",
             background_color="#FFC52E", 
             display="flex",
-            justify_content="center",
-            height="50px",
+            justify_content="space-between",  # ← uno a cada extremo
+            align_items="center",
+            height="40px",
         ),
 
         # Propiedades del fondo general de la app
@@ -78,8 +95,9 @@ def index() -> rx.Component:
 app = rx.App(
     theme=rx.theme(
         appearance='light',
-        accent_color="green",
+        # accent_color="#FFC52E",
         has_background=True
-    )
+    ),
+    stylesheets=["style.css"],
 )
 app.add_page(index)
