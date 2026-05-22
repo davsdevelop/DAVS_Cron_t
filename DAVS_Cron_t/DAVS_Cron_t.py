@@ -1,0 +1,85 @@
+import reflex as rx
+# from .components import task_input
+# from .components import task_list
+
+def index() -> rx.Component:
+    # Contenedor raíz 
+    return rx.box(      
+        # ===== HEADER =====
+        rx.box(
+            width="100%",
+            height="25px",
+            background_color="#FFC52E"
+        ),
+        rx.box( # espacio
+            width="100%",
+            height="25px",
+        ),
+
+        # ==== CONTENIDO PRINCIPAL ====
+        rx.box(
+            rx.vstack(
+                rx.vstack(
+                    rx.image("/logo_cron_t.svg", width="250px"),
+                    rx.text(
+                        "Gestiona tus tareas con cronómetros",
+                        size="3",
+                        weight="regular",
+                        color="#8E8E93"
+                    ),
+                    spacing="1",
+                    align="center",
+                    padding_bottom="2"
+                ),
+
+                # Input Principal
+                # task_input(),
+
+                # Lista de tareas
+                # task_list(),
+
+                spacing="5",
+                width="100%",
+                max_width="640px",
+                align="center"
+            ),
+            display="flex",
+            justify_content="center",
+            padding_x="5",
+            padding_y="10",
+            flex_grow="1",
+        ),
+        
+        # ==== FOOTER ====
+        rx.box(
+            rx.text(
+                "© 2026 Cronos. Todos los derechos reservados.", 
+                size="2", 
+                color="black", 
+                align="center"
+            ),
+            width="100%",
+            padding_y="",
+            background_color="#FFC52E", 
+            display="flex",
+            justify_content="center",
+            height="50px",
+        ),
+
+        # Propiedades del fondo general de la app
+        min_height="100vh",
+        width="100%",
+        background_color="#F5F5F7",
+        display="flex",
+        flex_direction="column", 
+    )
+
+
+app = rx.App(
+    theme=rx.theme(
+        appearance='light',
+        accent_color="green",
+        has_background=True
+    )
+)
+app.add_page(index)
