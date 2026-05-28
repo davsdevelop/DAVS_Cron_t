@@ -71,7 +71,7 @@ def index() -> rx.Component:
                 size="2", 
                 color="#464649", 
                 # align="right"
-                padding_right="40px"
+                padding_right="180px"
             ),
 
             width="100%",
