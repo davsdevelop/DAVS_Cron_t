@@ -4,3 +4,8 @@ assets/external/
 .states
 *.db
 __pycache__/
+
+
+
+contexto_proyecto.txt
+empaquetar1.py
