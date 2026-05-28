@@ -93,11 +93,11 @@ def index() -> rx.Component:
 
 
 app = rx.App(
-    theme=rx.theme(
-        appearance='light',
-        # accent_color="#FFC52E",
-        has_background=True
-    ),
+    # theme=rx.theme(
+    #     appearance='light',
+    #     # accent_color="#FFC52E",
+    #     has_background=True
+    # ),
     stylesheets=["style.css"],
 )
 app.add_page(index)

@@ -16,7 +16,7 @@ class TaskState(rx.State):
     @rx.event
     def enter_key(self, key: str):
         if key == "Enter":
-            return TaskState.add_task
+            return TaskState.add_task()
         
 
     @rx.event
@@ -38,7 +38,7 @@ class TaskState(rx.State):
         #ejecutar ticks
         if not self.ticker_running:
             self.ticker_running = True
-            return TaskState.tick
+            return TaskState.tick()
 
 
     @rx.event(background=True)
@@ -86,7 +86,7 @@ class TaskState(rx.State):
 
         if any(t["running"] for t in self.tasks) and not self.ticker_running:
             self.ticker_running = True
-            return TaskState.tick
+            return TaskState.tick()
 
 
 
