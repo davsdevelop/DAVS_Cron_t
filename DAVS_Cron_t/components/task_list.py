@@ -2,11 +2,14 @@ import reflex as rx
 from ..states.task_state import TaskState
 from .task_card import task_card
 
+
 def _empty_list() -> rx.Component:
     return rx.vstack(
         rx.icon("clock", size=48, color="#C7C7CC"),
         rx.text(
-            "Sin Tareas activas",
+            # Fix ortografía: "Sin tareas activas" — minúscula en "tareas"
+            # para consistencia con sentence case.
+            "Sin tareas activas",
             size="4",
             weight="medium",
             color="#8E8E93",
@@ -32,5 +35,5 @@ def task_list() -> rx.Component:
             columns="2",
             spacing="4",
             width="100%",
-        )
+        ),
     )

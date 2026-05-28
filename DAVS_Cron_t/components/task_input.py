@@ -2,12 +2,13 @@ import reflex as rx
 from ..states.task_state import TaskState
 
 
-
 def task_input() -> rx.Component:
     return rx.card(
         rx.vstack(
             rx.text(
-                "Nueva Tarea:",
+                # Fix ortografía: "Nueva tarea:" con minúscula en "tarea"
+                # para consistencia con sentence case del resto de la UI.
+                "Nueva tarea:",
                 size="3",
                 weight="medium",
                 color="#464649",
@@ -21,9 +22,8 @@ def task_input() -> rx.Component:
                     on_key_down=TaskState.enter_key,
                     size="3",
                     border_radius="12px",
-                    # variant="soft",
                     background_color="#FCE3A2",
-                    width="470px"
+                    width="470px",
                 ),
                 rx.button(
                     rx.icon("plus", size=18),
@@ -33,7 +33,7 @@ def task_input() -> rx.Component:
                     size="3",
                     border_radius="12px",
                     cursor="pointer",
-                    color="#464649"
+                    color="#464649",
                 ),
                 spacing="3",
                 width="100%",
@@ -46,6 +46,6 @@ def task_input() -> rx.Component:
         box_shadow="0 2px 16px rgba(0, 0, 0, 0.1)",
         padding="6",
         width="100%",
-        border="0.1px solid #000000", 
-        outline="0.1px solid #000000",
+        # Bug fix: eliminado outline duplicado (mismo que border)
+        border="0.1px solid #000000",
     )

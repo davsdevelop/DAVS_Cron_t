@@ -5,7 +5,7 @@ from ..states.task_state import TaskState
 def task_card(task: dict) -> rx.Component:
     return rx.card(
         rx.vstack(
-            #Cabecera
+            # Cabecera
             rx.hstack(
                 rx.cond(
                     task["running"],
@@ -27,29 +27,32 @@ def task_card(task: dict) -> rx.Component:
                     task["name"],
                     size="4",
                     weight="bold",
-                    color="#1D1D1F"
+                    color="#1D1D1F",
                 ),
                 align="center",
                 spacing="2",
-                width="100%"
+                width="100%",
             ),
-            #Cronometro
+            # Cronómetro
+            # Bug fix: style dict usa camelCase (estándar CSS-in-JS),
+            # no snake_case. Con snake_case la conversión interna de Reflex
+            # no es confiable entre dev y prod.
             rx.text(
                 task["display"],
                 style={
-                    "font_family":"ui-monospace, 'SF Mono', monospace",
-                    "font_size": "50px",
-                    "font_weight":"300",
-                    "letter_spacing":"-1px",
-                    "line_height":"1",
+                    "fontFamily": "ui-monospace, 'SF Mono', monospace",
+                    "fontSize": "50px",
+                    "fontWeight": "300",
+                    "letterSpacing": "-1px",
+                    "lineHeight": "1",
                     "color": "#1D1D1F",
                 },
             ),
-            #Botones 
+            # Botones
             rx.hstack(
                 rx.cond(
                     task["running"],
-                    #Botones pausa y play
+                    # Botón pausa
                     rx.button(
                         rx.icon("pause", size=15),
                         "Pausar",
@@ -59,8 +62,9 @@ def task_card(task: dict) -> rx.Component:
                         cursor="pointer",
                         size="2",
                         color="#464649",
-                        border="0.1px solid #000000", 
+                        border="0.1px solid #000000",
                     ),
+                    # Botón reanudar
                     rx.button(
                         rx.icon("play", size=15),
                         "Reanudar",
@@ -70,10 +74,10 @@ def task_card(task: dict) -> rx.Component:
                         cursor="pointer",
                         size="2",
                         color="#464649",
-                        border="0.1px solid #000000", 
+                        border="0.1px solid #000000",
                     ),
                 ),
-                #Botones reiniciar y eliminar
+                # Botones reiniciar y eliminar
                 rx.button(
                     rx.icon("rotate-ccw", size=15),
                     "Reiniciar",
@@ -83,7 +87,7 @@ def task_card(task: dict) -> rx.Component:
                     cursor="pointer",
                     size="2",
                     color="#464649",
-                    border="0.1px solid #000000", 
+                    border="0.1px solid #000000",
                 ),
                 rx.button(
                     rx.icon("trash-2", size=30),
@@ -91,7 +95,7 @@ def task_card(task: dict) -> rx.Component:
                     variant="ghost",
                     color_scheme="red",
                     cursor="pointer",
-                    size="4"
+                    size="4",
                 ),
                 spacing="4",
             ),
@@ -104,6 +108,7 @@ def task_card(task: dict) -> rx.Component:
         box_shadow="0 2px 16px rgba(0, 0, 0, 0.08)",
         padding="6",
         width="100%",
-        border="0.1px solid #000000", 
-        outline="0.1px solid #000000",
+        # Bug fix: border y outline duplicados dibujaban dos bordes superpuestos.
+        # outline no reemplaza a border — son propiedades distintas.
+        border="0.1px solid #000000",
     )

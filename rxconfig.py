@@ -2,6 +2,12 @@ import reflex as rx
 
 config = rx.Config(
     app_name="DAVS_Cron_t",
+    # 1. Fijamos el frontend para que apunte al backend correcto
+    api_url="https://cron-t-davs.onrender.com", 
+    # 2. Permitimos que el backend reciba la conexión
+    cors_allowed_origins=[
+        "*"
+    ],
     plugins=[
         rx.plugins.SitemapPlugin(),
         rx.plugins.TailwindV4Plugin(),
@@ -11,6 +17,5 @@ config = rx.Config(
                 has_background=True
             )
         )
-        
     ]
 )

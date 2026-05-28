@@ -2,16 +2,16 @@ import reflex as rx
 from .components import task_input
 from .components import task_list
 
+
 def index() -> rx.Component:
-    # Contenedor raíz 
-    return rx.box(      
+    return rx.box(
         # ===== HEADER =====
         rx.box(
             width="100%",
             height="15px",
-            background_color="#FFC52E"
+            background_color="#FFC52E",
         ),
-        rx.box( # espacio
+        rx.box(
             width="100%",
             height="25px",
         ),
@@ -25,23 +25,23 @@ def index() -> rx.Component:
                         "Gestiona tus tareas con cronómetros",
                         size="3",
                         weight="regular",
-                        color="#8E8E93"
+                        color="#8E8E93",
                     ),
                     spacing="1",
                     align="center",
-                    padding_bottom="2"
+                    padding_bottom="2",
                 ),
 
-                #Input Principal
+                # Input principal
                 task_input(),
 
-                #Lista de tareas
+                # Lista de tareas
                 task_list(),
 
                 spacing="5",
                 width="100%",
                 max_width="640px",
-                align="center"
+                align="center",
             ),
             display="flex",
             justify_content="center",
@@ -50,54 +50,44 @@ def index() -> rx.Component:
             flex_grow="1",
         ),
 
-        rx.box( # espacio
+        rx.box(
             width="100%",
             height="25px",
         ),
-        
+
         # ==== FOOTER ====
         rx.box(
-                        
             rx.text(
-                "Desarrollado por: Diego Videla Silva", 
-                size="2", 
-                color="#464649", 
-                # align="center"
-                padding_left="40px"
+                "Desarrollado por: Diego Videla Silva",
+                size="2",
+                color="#464649",
+                padding_left="40px",
             ),
             rx.image("/DAVS.png", width="70px"),
             rx.text(
-                "© 2026 Cron-t. Todos los derechos reservados.", 
-                size="2", 
-                color="#464649", 
-                # align="right"
-                padding_right="180px"
+                "© 2026 Cron-t. Todos los derechos reservados.",
+                size="2",
+                color="#464649",
+                padding_right="180px",
             ),
-
             width="100%",
-            padding_y="",
-            background_color="#FFC52E", 
+            # Bug fix: padding_y="" generaba CSS inválido. Eliminado.
+            background_color="#FFC52E",
             display="flex",
-            justify_content="space-between",  # ← uno a cada extremo
+            justify_content="space-between",
             align_items="center",
             height="40px",
         ),
 
-        # Propiedades del fondo general de la app
         min_height="100vh",
         width="100%",
         background_color="#F5F5F7",
         display="flex",
-        flex_direction="column", 
+        flex_direction="column",
     )
 
 
 app = rx.App(
-    # theme=rx.theme(
-    #     appearance='light',
-    #     # accent_color="#FFC52E",
-    #     has_background=True
-    # ),
-    stylesheets=["style.css"],
+    stylesheets=["/style.css"],
 )
 app.add_page(index)
