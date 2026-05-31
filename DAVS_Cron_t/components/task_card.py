@@ -41,7 +41,8 @@ def task_card(task: dict) -> rx.Component:
                 task["display"],
                 style={
                     "fontFamily": "ui-monospace, 'SF Mono', monospace",
-                    "fontSize": "50px",
+                    # CAMBIO: clamp(min, ideal, max) para que escale suavemente
+                    "fontSize": "clamp(35px, 8vw, 50px)",
                     "fontWeight": "300",
                     "letterSpacing": "-1px",
                     "lineHeight": "1",
@@ -97,7 +98,8 @@ def task_card(task: dict) -> rx.Component:
                     cursor="pointer",
                     size="4",
                 ),
-                spacing="4",
+                flex_wrap="wrap", 
+                justify_content="center"
             ),
             spacing="4",
             align="start",

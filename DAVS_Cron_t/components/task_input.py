@@ -13,17 +13,19 @@ def task_input() -> rx.Component:
                 weight="medium",
                 color="#464649",
             ),
+            # Dentro de task_input()
             rx.hstack(
                 rx.input(
-                    placeholder="Escribe un nombre al cronómetro de tu tarea...",
-                    color="black",
+                    placeholder="Escribe un nombre...",
                     value=TaskState.new_task_name,
                     on_change=TaskState.set_new_task_name,
                     on_key_down=TaskState.enter_key,
                     size="3",
                     border_radius="12px",
                     background_color="#FCE3A2",
-                    width="470px",
+                    # CAMBIO: Quitamos width="470px" y delegamos al flexbox
+                    flex="1", 
+                    width="100%",
                 ),
                 rx.button(
                     rx.icon("plus", size=18),
@@ -34,10 +36,14 @@ def task_input() -> rx.Component:
                     border_radius="12px",
                     cursor="pointer",
                     color="#464649",
+                    # En móviles evitamos que el botón se aplaste
+                    flex_shrink="0", 
                 ),
                 spacing="3",
                 width="100%",
                 align="center",
+                # CAMBIO: Apilar en móvil (columna), lado a lado en tablets/desktop (fila)
+                flex_direction=rx.breakpoints(initial="column", sm="row"),
             ),
             spacing="3",
             width="100%",

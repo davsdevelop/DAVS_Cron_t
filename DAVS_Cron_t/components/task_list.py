@@ -30,10 +30,12 @@ def task_list() -> rx.Component:
     return rx.cond(
         TaskState.tasks.length() == 0,
         _empty_list(),
+        # Dentro de task_list()
         rx.grid(
             rx.foreach(TaskState.tasks, task_card),
-            columns="2",
+            # CAMBIO: 1 columna en móvil, 2 en pantallas más grandes
+            columns=rx.breakpoints(initial="1", sm="2"),
             spacing="4",
             width="100%",
-        ),
+        )
     )

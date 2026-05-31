@@ -39,7 +39,7 @@ def index() -> rx.Component:
                 task_list(),
 
                 spacing="5",
-                width="100%",
+                width=rx.breakpoints(initial="90%", sm="100%"),
                 max_width="640px",
                 align="center",
             ),
@@ -55,28 +55,29 @@ def index() -> rx.Component:
             height="25px",
         ),
 
-        # ==== FOOTER ====
+        #  ==== FOOTER ====
         rx.box(
             rx.text(
                 "Desarrollado por: Diego Videla Silva",
                 size="2",
                 color="#464649",
-                padding_left="40px",
             ),
             rx.image("/DAVS.png", width="70px"),
             rx.text(
                 "© 2026 Cron-t. Todos los derechos reservados.",
                 size="2",
                 color="#464649",
-                padding_right="180px",
             ),
             width="100%",
-            # Bug fix: padding_y="" generaba CSS inválido. Eliminado.
             background_color="#FFC52E",
             display="flex",
+            # CAMBIO: Columna centrada en móvil, fila espaciada en desktop
+            flex_direction=rx.breakpoints(initial="column", sm="row"),
             justify_content="space-between",
             align_items="center",
-            height="40px",
+            padding_x="4",
+            padding_y="2", # Reemplaza el height="40px" fijo
+            gap="3", # Espacio entre elementos cuando estén en columna
         ),
 
         min_height="100vh",
@@ -88,6 +89,8 @@ def index() -> rx.Component:
 
 
 app = rx.App(
+    # Bug fix: stylesheet sin "/" inicial puede fallar en producción.
+    # Reflex sirve los assets desde la raíz, siempre usar "/" al inicio.
     stylesheets=["/style.css"],
 )
 app.add_page(index)
